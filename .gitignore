@@ -1,2 +1,18 @@
 
 .DS_Store
+build/contracts/AddressUtils.json
+build/contracts/AdminUpgradeabilityProxy.json
+build/contracts/BasicToken.json
+build/contracts/BBFactoryContract.json
+build/contracts/BBOTest.json
+build/contracts/ECRecovery.json
+build/contracts/ERC20.json
+build/contracts/ERC20Basic.json
+build/contracts/Math.json
+build/contracts/Migrations.json
+build/contracts/Ownable.json
+build/contracts/Proxy.json
+build/contracts/SafeMath.json
+build/contracts/StandardToken.json
+build/contracts/UpgradeabilityProxy.json
+build/contracts/UpgradeabilityProxyFactory.json

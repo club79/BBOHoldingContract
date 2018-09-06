@@ -10,13 +10,7 @@ contract BBFactoryContract is Ownable{
       ERC20 public bbo = ERC20(0x0);
 
       uint maxFaucetToken =  500 * 1e18; //500 token
-      uint transferToken  =  100 * 1e18; //100 token
-
-
-     function depositBBO(uint amount) onlyOwner public{
-
-         bbo.transferFrom(msg.sender, address(this), amount);
-     }
+      uint transferToken  =  10 * 1e18; //100 token
 
 
      function setMaxFaucet(uint value) onlyOwner public {
