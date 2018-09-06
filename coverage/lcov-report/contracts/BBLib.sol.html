@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/BBLib.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> BBLib.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">82.35% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>14/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">80% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>12/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>15/18</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">286×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">97×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity ^0.4.24;
+&nbsp;
+&nbsp;
+/**
+ * @title BBLib
+ * @dev Assorted BB operations
+ */
+library BBLib {
+	function toB32(bytes a) internal pure returns (bytes32 r) {
+		r = keccak256(abi.encodePacked(a));
+	}
+	function toB32(bytes a, bytes b) internal pure returns (bytes32 r) {
+		r = keccak256(abi.encodePacked(a,b));
+	}
+	function toB32(bytes a, address b) internal pure returns (bytes32 r) {
+		r = keccak256(abi.encodePacked(a,b));
+	}
+	function toB32(address a, bytes b) internal pure returns (bytes32 r) {
+		r = keccak256(abi.encodePacked(a,b));
+	}
+	function toB32(address a, uint256 b) internal pure returns (bytes32 r) {
+		r = keccak256(abi.encodePacked(a,b));
+	}
+	function toB32(bytes a, uint256 b) internal pure returns (bytes32 r) {
+		r = keccak256(abi.encodePacked(a,b));
+	}
+	function toB32(bytes a, uint256 b, bytes c) internal pure returns (bytes32 r) {
+		r = keccak256(abi.encodePacked(a,b,c));
+	}
+<span class="fstat-no" title="function not covered" >	function toB32(address a, uint256 b, bytes c) internal pure returns (bytes32 r) {</span>
+<span class="cstat-no" title="statement not covered" >		r = keccak256(abi.encodePacked(a,b,c))</span>;
+	}
+<span class="fstat-no" title="function not covered" >	function toB32(address a, uint256 b, uint256 c) internal pure returns (bytes32 r) {</span>
+<span class="cstat-no" title="statement not covered" >		r = keccak256(abi.encodePacked(a,b,c))</span>;
+	}
+<span class="fstat-no" title="function not covered" >	function toB32(bytes a, bytes b, bytes c) internal pure returns (bytes32 r) {</span>
+<span class="cstat-no" title="statement not covered" >		r = keccak256(abi.encodePacked(a,b,c))</span>;
+	}
+	function toB32(bytes a, address b, bytes c) internal pure returns (bytes32 r) {
+		r = keccak256(abi.encodePacked(a,b,c));
+	}
+	function toB32(bytes a, bytes b, uint256 c) internal pure returns (bytes32 r) {
+		r = keccak256(abi.encodePacked(a,b,c));
+	}
+	function toB32(bytes a, bytes b, address c) internal pure returns (bytes32 r) {
+		r = keccak256(abi.encodePacked(a,b,c));
+	}
+	function toB32(bytes a, uint256 b, bytes c, address d) internal pure returns (bytes32 r) {
+		r = keccak256(abi.encodePacked(a,b,c,d));
+	}
+	function bytesToBytes32(bytes b) internal pure returns (bytes32) {
+	    bytes32 out;
+&nbsp;
+	    for (uint i = 0; i &lt; 32; i++) {
+	      out |= bytes32(b[i] &amp; 0xFF) &gt;&gt; (i * 8);
+	    }
+	    return out;
+  	}
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Sep 04 2018 15:02:36 GMT+0700 (+07)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

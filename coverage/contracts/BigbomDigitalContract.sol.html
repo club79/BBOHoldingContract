@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/BigbomDigitalContract.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> BigbomDigitalContract.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.5% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>39/40</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">59.09% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>13/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>10/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.04% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>50/51</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Created on 2018-08-13 10:24
+ * @summary: Document Sign 
+ * @author: Chris Nguyen
+ */
+pragma solidity ^0.4.24;
+&nbsp;
+import './BBStorage.sol';
+import './zeppelin/ownership/Ownable.sol';
+import './zeppelin/ECRecovery.sol';
+&nbsp;
+/**
+ * @title Document Sign contract 
+ */
+contract BigbomDigitalContract is Ownable {
+  using ECRecovery for *;
+  BBStorage bbs = BBStorage(0x0);
+&nbsp;
+  mapping(bytes32=&gt;bool) uniqueTemp;
+&nbsp;
+&nbsp;
+  /**
+   * @dev 
+   * @param storageAddress the address of storage contract
+   */
+  function setStorage(address storageAddress) onlyOwner public {
+    bbs = BBStorage(storageAddress);
+  }
+  /**
+   * @dev 
+   */
+  function getStorage()  onlyOwner public returns(address){
+   
+    return bbs;
+  }
+  // check the user is owner of his signature
+  modifier userIsOwnerSign(bytes bboDocHash, bytes userSign){
+  	require(bboDocHash.toEthSignedMessageHashBytes().recover(userSign) == msg.sender);
+  	_;
+  }
+&nbsp;
+  //
+  modifier isUniqueAddress(bytes bboDocHash, address[] addresses){
+     for(uint i=0;i&lt;addresses.length;i++){
+       // not include msg.sender
+       <span class="missing-if-branch" title="else path not taken" >E</span>require(msg.sender!=addresses[i]);
+       // check addresses is unique
+       <span class="missing-if-branch" title="else path not taken" >E</span>if(!uniqueTemp[keccak256(abi.encodePacked(bboDocHash,addresses[i]))]){
+         uniqueTemp[keccak256(abi.encodePacked(bboDocHash,addresses[i]))] = true;
+       }else{
+<span class="cstat-no" title="statement not covered" >         revert()</span>;
+       }
+     }
+    _;
+  }
+  // get BBODocument by docHash
+  /**
+   * @dev 
+   * @param bboDocHash the Document Hash
+   * @param userSign the signature of the User
+   */
+  function verifyBBODocument(bytes bboDocHash, bytes userSign) public view returns (bool) {
+  	address userAddr = bboDocHash.toEthSignedMessageHashBytes().recover(userSign);
+  	return keccak256(bbs.getBytes(keccak256(abi.encodePacked(bboDocHash,'signature', userAddr))))==keccak256(userSign);
+  }
+&nbsp;
+  // get list address &amp; status by docHash
+  /**
+   * @dev 
+   * @param bboDocHash the Document Hash
+   * @return address[]
+   * @return bool[]
+   */
+  function getAddressesByDocHash(bytes bboDocHash) public view returns(address[], bool[]){
+&nbsp;
+    uint docNum = bbs.getUint(keccak256(abi.encodePacked(bboDocHash)));
+    address[] memory addresses = new address[](docNum);
+    bool[] memory status = new bool[](docNum);
+    for(uint i=0;i&lt;docNum;i++){
+      if(i==0)
+      addresses[i] = bbs.getAddress(keccak256(abi.encodePacked(bboDocHash,'address')));
+      else
+      addresses[i] = bbs.getAddress(keccak256(abi.encodePacked(bboDocHash,'address', i)));
+&nbsp;
+      status[i] = (keccak256(bbs.getBytes(keccak256(abi.encodePacked(bboDocHash,'signature', addresses[i]))))!=keccak256(""));
+    }
+    return (addresses, status);
+  }
+  
+  
+  //get list signed document of user
+  /**
+   * @dev 
+   * @param addr address of user
+   * @return uint[]
+   */
+  function getDocuments(address addr) public view returns(bytes, uint[]){
+    // get number of doc already
+    bytes memory docReturn = '';
+    uint256 docNumber = bbs.getUint(keccak256(abi.encodePacked(addr)));
+    uint[] memory expiredTimestamps = new uint[] (docNumber);
+    for(uint256 i=1;i&lt;=docNumber;i++){
+     bytes memory dochash = bbs.getBytes(keccak256(abi.encodePacked(addr, i)));
+     docReturn = abi.encodePacked(docReturn, abi.encodePacked(dochash,','));
+     expiredTimestamps[i-1]=bbs.getUint(keccak256(abi.encodePacked(dochash, 'expiredTimestamp')));
+    }
+    return (docReturn, expiredTimestamps);
+  }
+  
+  // user Sign The Document
+  event BBODocumentSigned(bytes bboDocHash, address indexed user);
+  /**
+   * @dev 
+   * @param bboDocHash the Document Hash
+   * @param userSign the signature of the User
+   * @param pendingAddresses list of invited address
+   * @param expiredTimestamp expired unit timestamp 
+   */
+  function createAndSignBBODocument(bytes bboDocHash, bytes userSign, address[] pendingAddresses, uint expiredTimestamp) public 
+   userIsOwnerSign(bboDocHash, userSign)
+   isUniqueAddress(bboDocHash, pendingAddresses)
+   {
+     // expiredTimestamp must &gt; now
+     <span class="missing-if-branch" title="else path not taken" >E</span>require(expiredTimestamp &gt; now);
+     // docHash not existing
+  	 <span class="missing-if-branch" title="else path not taken" >E</span>require(bbs.getUint(keccak256(abi.encodePacked(bboDocHash))) == 0x0);
+&nbsp;
+     // list pendingAddresses 
+     <span class="missing-if-branch" title="else path not taken" >E</span>require(pendingAddresses.length &gt; 0);
+  	 
+     // maximum is 5 addresses
+     <span class="missing-if-branch" title="else path not taken" >E</span>require(pendingAddresses.length &lt;=5);
+&nbsp;
+     //new storage implements
+     // save number user of this docs
+     bbs.setUint(keccak256(abi.encodePacked(bboDocHash)), pendingAddresses.length + 1);
+     // set time
+     bbs.setUint(keccak256(abi.encodePacked(bboDocHash, 'expiredTimestamp')), expiredTimestamp);
+     // save first address is owner of the docs
+     bbs.setAddress(keccak256(abi.encodePacked(bboDocHash,'address')), msg.sender);
+     // save owner sign
+     bbs.setBytes(keccak256(abi.encodePacked(bboDocHash,'signature', msg.sender)), userSign);
+     // todo save bboDocHash to user address
+     setDocToAddress(msg.sender, bboDocHash);
+&nbsp;
+     // loop &amp; save in pendingAddresses 2^8
+     for(uint i=0;i&lt;pendingAddresses.length;i++){
+        bbs.setAddress(keccak256(abi.encodePacked(bboDocHash, 'address', i+1)), pendingAddresses[i]);
+        // save bboDocHash to user address
+        setDocToAddress(pendingAddresses[i], bboDocHash);
+     }
+     emit BBODocumentSigned(bboDocHash, msg.sender);
+     
+  }
+&nbsp;
+  /**
+   * @dev 
+   * @param adr the address of the user
+   * @param docHash document hash
+   */
+  function setDocToAddress(address adr, bytes docHash) internal {
+    // get number of doc already
+     uint256 docNumber = bbs.getUint(keccak256(abi.encodePacked(adr)));
+     docNumber++;
+     // incres 1
+     bbs.setUint(keccak256(abi.encodePacked(adr)), docNumber);
+     // set doc hash
+     bbs.setBytes(keccak256(abi.encodePacked(adr, docNumber)), docHash);
+  }
+&nbsp;
+  /**
+   * @dev 
+   * @param bboDocHash the Document Hash
+   * @param userSign the signature of the User
+   */
+  function signBBODocument(bytes bboDocHash, bytes userSign)public 
+   userIsOwnerSign(bboDocHash, userSign)
+   {
+     // check already docHash
+     <span class="missing-if-branch" title="else path not taken" >E</span>require(bbs.getUint(keccak256(abi.encodePacked(bboDocHash)))!=0x0);
+     // check already sign
+     <span class="missing-if-branch" title="else path not taken" >E</span>require(keccak256(bbs.getBytes(keccak256(abi.encodePacked(bboDocHash,'signature', msg.sender))))!=keccak256(userSign));
+     // check expired 
+     <span class="missing-if-branch" title="else path not taken" >E</span>require(bbs.getUint(keccak256(abi.encodePacked(bboDocHash, 'expiredTimestamp'))) &gt; now);
+     // save signature
+     bbs.setBytes(keccak256(abi.encodePacked(bboDocHash,'signature', msg.sender)), userSign);
+     emit BBODocumentSigned(bboDocHash, msg.sender);
+  }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Sep 04 2018 15:02:36 GMT+0700 (+07)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
