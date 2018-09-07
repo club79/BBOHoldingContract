@@ -1,12 +1,10 @@
 pragma solidity ^0.4.24;
 
 import './zeppelin/ownership/Ownable.sol';
-import './zeppelin/math/SafeMath.sol';
 import './zeppelin/token/ERC20/ERC20.sol';
 
-contract BBFactoryContract is Ownable{
+contract BBOFaucetContract is Ownable{
     
-      using SafeMath for uint256;
       ERC20 public bbo = ERC20(0x0);
 
       uint maxFaucetToken =  500 * 1e18; //500 token

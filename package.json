@@ -1,7 +1,7 @@
 {
-  "name": "bigbom-digital-contract",
+  "name": "bigbom-faucet-contract",
   "version": "1.0.0",
-  "description": "Bigbom digital contract",
+  "description": "Bigbom faucet contract",
   "main": "truffle.js",
   "directories": {
     "test": "test"
@@ -11,7 +11,7 @@
     "testrpc": "testrpc-sc --gasLimit 0xfffffffffff --gasPrice 0x01 --network-id 777 -p 8545",
     "coverage": "./node_modules/.bin/solidity-coverage"
   },
-  "author": "Chris Nguyen",
+  "author": "Tran Tho",
   "license": "MIT",
   "dependencies": {
     "bignumber.js": "^7.2.1",

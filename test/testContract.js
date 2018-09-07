@@ -1,20 +1,20 @@
-const BBFactoryContract = artifacts.require("BBFactoryContract");
+const BBOFaucetContract = artifacts.require("BBOFaucetContract");
 const BBOTest = artifacts.require("BBOTest");
 var Web3 = require('web3');
 
 var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 
 
-contract('BBFactoryContract Test', async (accounts) => {
+contract('BBOFaucetContract Test', async (accounts) => {
     console.log(accounts);
 
 
-    it("initialize BBFactory contract", async () => {
+    it("initialize BBOFaucetContract contract", async () => {
         erc20 = await BBOTest.new({
             from: accounts[0]
         });
 
-        let contract = await BBFactoryContract.new({
+        let contract = await BBOFaucetContract.new({
             from: accounts[0]
         });
 
