@@ -30,7 +30,7 @@ contract BBOFaucetContract is Ownable{
      }
 
 
-    function getBB0 () public {
+    function faucetBB0 () public {
         
     require(bbo.balanceOf(msg.sender) < maxFaucetToken);
 
@@ -39,7 +39,7 @@ contract BBOFaucetContract is Ownable{
     }
 
     function () external payable {
-        getBB0();
+        faucetBB0();
     }
 
   

@@ -86,26 +86,26 @@ contract('BBOFaucetContract Test', async (accounts) => {
 
 
         //User request BB0
-        await contract.getBB0({
+        await contract.faucetBB0({
             from: accounts[1]
         });
 
-        await contract.getBB0({
+        await contract.faucetBB0({
             from: accounts[1]
         });
 
-        await contract.getBB0({
+        await contract.faucetBB0({
             from: accounts[1]
         });
 
-        await contract.getBB0({
+        await contract.faucetBB0({
             from: accounts[2]
         });
 
 
        
         try {
-            await contract.getBB0({
+            await contract.faucetBB0({
                 from: accounts[1]
             });
 
