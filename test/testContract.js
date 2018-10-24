@@ -1,146 +1,359 @@
-const BBOFaucetContract = artifacts.require("BBOFaucetContract");
+const BBOHoldingContract = artifacts.require("BBOHoldingContract");
 const BBOTest = artifacts.require("BBOTest");
 var Web3 = require('web3');
-
+var Helpers = require('./../helpers/helpers.js');
 var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+var BigNumber = require('bignumber.js')
 
 
-contract('BBOFaucetContract Test', async (accounts) => {
-    console.log(accounts);
 
+contract('BBOHoldingContract', async (accounts) => {
 
-    it("initialize BBOFaucetContract contract", async () => {
+    var erc20;
+    var contract;
+    var admin;
+
+    it("initialize BBOHoldingContract contract", async () => {
         erc20 = await BBOTest.new({
             from: accounts[0]
         });
 
-        let contract = await BBOFaucetContract.new({
+        admin = accounts[9];
+
+        contract = await BBOHoldingContract.new(erc20.address, admin, {
             from: accounts[0]
         });
 
-        console.log('contract address : ', contract.address);
-        console.log('token address : ', erc20.address);
-
-
-        let xxx = await erc20.balanceOf(contract.address, {
-            from: accounts[0]
-        });
-        console.log('Balance before : ', xxx);
-
-        await contract.setBBO(erc20.address, {
+        await erc20.transfer(contract.address, 1000e18, {
             from: accounts[0]
         });
 
+        await erc20.transfer(accounts[1], 1000e18, {
+            from: accounts[0]
+        });
+        await erc20.transfer(accounts[2], 1000e18, {
+            from: accounts[0]
+        });
+
+        await erc20.transfer(accounts[3], 500e18, {
+            from: accounts[0]
+        });
+
+        await erc20.transfer(accounts[4], 500e18, {
+            from: accounts[0]
+        });
+
+    });
+
+    it("[Fail] request holding without Start Program ", async () => {
+        await erc20.approve(contract.address, 200e18, {
+            from: accounts[1]
+        });
         try {
-            await contract.setBBO(erc20.address, {
-                from: accounts[1]
+            await web3.eth.sendTransaction({
+                from: accounts[1],
+                to: contract.address,
+                value: web3.utils.toWei('0', "ether")
             });
-            console.log("Test function setBBO only owner FALSE");
-
-        } catch(e) {
-            console.log(" ✓  Test function setBBO only owner OK");
+            console.log('[Fail] request holding without Start Program OK');
+            return false;
+        } catch (e) {
+            return true;
         }
 
+    });
 
-        await contract.setMaxFaucet(2000000e18, {
-            from: accounts[0]
-        });
-
-        await contract.setMaxFaucet(300e18, {
-            from: accounts[0]
-        });
-
+    it("[Fail] Not admin  Start Program", async () => {
         try {
-            await contract.setMaxFaucet(300e18, {
-                from: accounts[1]
+            let jobLog = await contract.start({
+                from: accounts[0]
             });
-            console.log("Test function setMaxFaucet only owner FALSE");
-
-        } catch(e) {
-            console.log(" ✓  Test function setMaxFaucet only owner OK");
+            return false;
+        } catch (e) {
+            return true;
         }
 
-        await contract.setTransferToken(100e18, {
-            from: accounts[0]
+    });
+
+    it("Start Program", async () => {
+        let jobLog = await contract.start({
+            from: admin
         });
 
-        try {
-            await contract.setTransferToken(300e18, {
-                from: accounts[1]
-            });
-            console.log("Test function setTransferToken only owner FALSE");
+        assert(jobLog.logs.length > 0);
 
-        } catch(e) {
-            console.log(" ✓  Test function setTransferToken only owner OK");
+    });
+
+    it("[Fail] Start Program again", async () => {
+        try {
+            await contract.start({
+                from: admin
+            });
+            return false;
+        } catch (e) {
+            return true;
         }
 
+    });
 
-        await erc20.transfer(contract.address, 9000000e18, {
-            from: accounts[0]
+    it("[Fail] request holding without approve ", async () => {
+        try {
+            await web3.eth.sendTransaction({
+                from: accounts[1],
+                to: contract.address,
+                value: web3.utils.toWei('0', "ether")
+            });
+            return false;
+        } catch (e) {
+            return true;
+        }
+
+    });
+
+    it("[Fail] request holding without balance BBO <= 0 ", async () => {
+        await erc20.approve(contract.address, 200e18, {
+            from: accounts[5]
         });
+        try {
+            await web3.eth.sendTransaction({
+                from: accounts[5],
+                to: contract.address,
+                value: web3.utils.toWei('0', "ether")
+            });
+            return false;
+        } catch (e) {
+            return true;
+        }
 
-        let yyy = await erc20.balanceOf(contract.address, {
-            from: accounts[0]
-        });
-        console.log('Balance after : ', yyy);
+    });
 
-
-        //User request BB0
-        await contract.faucetBB0({
+    it("Request holding BBO Token ", async () => {
+        await erc20.approve(contract.address, 200e18, {
             from: accounts[1]
         });
 
-        await contract.faucetBB0({
-            from: accounts[1]
-        });
-
-        await contract.faucetBB0({
-            from: accounts[1]
-        });
-
-        await contract.faucetBB0({
+        await erc20.approve(contract.address, 300e18, {
             from: accounts[2]
         });
 
+        await erc20.approve(contract.address, 3000e18, {
+            from: accounts[3]
+        });
 
-       
+        await erc20.approve(contract.address, 500e18, {
+            from: accounts[3]
+        });
+
+        await erc20.approve(contract.address, 500e18, {
+            from: accounts[4]
+        });
+
+
+        await web3.eth.sendTransaction({
+            from: accounts[1],
+            to: contract.address,
+            value: web3.utils.toWei('0', "ether")
+        });
+
+        await web3.eth.sendTransaction({
+            from: accounts[2],
+            to: contract.address,
+            value: web3.utils.toWei('0', "ether")
+        });
+
+        await web3.eth.sendTransaction({
+            from: accounts[3],
+            to: contract.address,
+            value: web3.utils.toWei('0', "ether")
+        });
+
+        await web3.eth.sendTransaction({
+            from: accounts[4],
+            to: contract.address,
+            value: web3.utils.toWei('0', "ether")
+        });
+
+        let bbo = await contract.bboBalance({
+            from: accounts[1]
+        });
+
+        assert.equal(JSON.stringify(bbo), JSON.stringify(new BigNumber(2700e18)));
+
+    });
+
+    it("[Fail] Request Deposit holding BBO Token again without approve", async () => {
+
         try {
-            await contract.faucetBB0({
-                from: accounts[1]
+            await web3.eth.sendTransaction({
+                from: accounts[1],
+                to: contract.address,
+                value: web3.utils.toWei('0', "ether")
             });
-
-            console.log('Can get more token');
+            console.log('[Fail] Request Deposit holding BBO Token again without approve OK');
+            return false;
         } catch (e) {
-
-            console.log('Can not get more token');
-
-
+            return true;
         }
 
-        let yyyk = await erc20.balanceOf(contract.address, {
-            from: accounts[0]
+    });
+
+    it("Request Deposit holding BBO Token again", async () => {
+
+        await erc20.approve(contract.address, 100e18, {
+            from: accounts[1]
         });
-        console.log('Balance after request : ', yyyk);
+        await web3.eth.sendTransaction({
+            from: accounts[1],
+            to: contract.address,
+            value: web3.utils.toWei('0', "ether")
+        });
+
+        let bbo = await contract.bboBalance({
+            from: accounts[1]
+        });
+
+        assert.equal(JSON.stringify(bbo), JSON.stringify(new BigNumber(2800e18)));
 
         let zzzm = await erc20.balanceOf(accounts[1], {
             from: accounts[1]
         });
-        console.log('Balance user affer request : ', zzzm);
 
-        let zzzmm = await erc20.balanceOf(accounts[3], {
-            from: accounts[3]
-        });
-        console.log('Balance user before pay : ', zzzmm);
-
-        await web3.eth.sendTransaction({from:accounts[3],to:contract.address, value:web3.utils.toWei('0', "ether")});
-        await web3.eth.sendTransaction({from:accounts[3],to:contract.address, value:web3.utils.toWei('0', "ether")});
-
-        let zzzmmk = await erc20.balanceOf(accounts[3], {
-            from: accounts[3]
-        });
-        console.log('Balance user after pay : ', zzzmmk);
+        assert.equal(JSON.stringify(zzzm), JSON.stringify(new BigNumber(500e18)));
 
     });
+
+    it("fast forward to 540 days after start program", function () {
+        var fastForwardTime = 540 * 24 * 3600 + 1;
+        return Helpers.sendPromise('evm_increaseTime', [fastForwardTime]).then(function () {
+            return Helpers.sendPromise('evm_mine', []).then(function () {
+
+            });
+        });
+    });
+
+    it("Withdraw BBO", async () => {
+
+        let bbo = await contract.bboBalance({
+            from: accounts[1]
+        });
+        console.log('BBO contract', JSON.stringify(bbo));
+
+        await web3.eth.sendTransaction({
+            from: accounts[1],
+            to: contract.address,
+            value: web3.utils.toWei('0.000001', "ether")
+        });
+
+
+        bbo = await contract.bboBalance({
+            from: accounts[1]
+        });
+        console.log('BBO contract', JSON.stringify(bbo));
+
+        await web3.eth.sendTransaction({
+            from: accounts[2],
+            to: contract.address,
+            value: web3.utils.toWei('0', "ether")
+        });
+
+        bbo = await contract.bboBalance({
+            from: accounts[1]
+        });
+        console.log('BBO contract', JSON.stringify(bbo));
+
+        await web3.eth.sendTransaction({
+            from: accounts[3],
+            to: contract.address,
+            value: web3.utils.toWei('0', "ether")
+        });
+
+        await web3.eth.sendTransaction({
+            from: accounts[1],
+            to: contract.address,
+            value: web3.utils.toWei('0', "ether")
+        });
+
+        let bboB = await erc20.balanceOf(accounts[1], {
+            from: accounts[1]
+        });
+
+        let bboC = await erc20.balanceOf(accounts[2], {
+            from: accounts[1]
+        });
+
+        let bboD = await erc20.balanceOf(accounts[3], {
+            from: accounts[1]
+        });
+
+        bbo = await contract.bboBalance({
+            from: accounts[1]
+        });
+        console.log('BBO contract', JSON.stringify(bbo));
+
+        console.log(JSON.stringify(bboB));
+        console.log(JSON.stringify(bboC));
+        console.log(JSON.stringify(bboD));
+
+    });
+
+    it("[Fail] Withdraw BBO aagian", async () => {
+        try {
+            await web3.eth.sendTransaction({
+                from: accounts[2],
+                to: contract.address,
+                value: web3.utils.toWei('0', "ether")
+            });
+            return false;
+        } catch (e) {
+            return true;
+        }
+    });
+
+    it("[Fail] Drain BBO with time < DRAIN_DELAY", async () => {
+        try {
+            await contract.drain({
+                from: admin
+            });
+            return false;
+        } catch (e) {
+            return true;
+        }
+    });
+
+    it("fast forward to 1080 days to drain", function () {
+        var fastForwardTime = 1080 * 24 * 3600 + 1;
+        return Helpers.sendPromise('evm_increaseTime', [fastForwardTime]).then(function () {
+            return Helpers.sendPromise('evm_mine', []).then(function () {
+
+            });
+        });
+    });
+
+    it("[Fail] Not admin Drain", async () => {
+        try {
+            await contract.drain({
+                from: accounts[0]
+            });
+            console.log("[Fail] Not admin Drain OK");
+            return false;
+        } catch (e) {
+            return true;
+        }
+    });
+
+    it("Drain BBO", async () => {
+        await contract.drain({
+            from: admin
+        });
+
+        let bbo = await contract.bboBalance({
+            from: accounts[1]
+        });
+
+        assert(bbo.c[0] <= 0);
+       
+    });
+
 
 
 });
