@@ -43,6 +43,8 @@ contract('BBOHoldingContract', async (accounts) => {
             from: accounts[0]
         });
 
+        return true;
+
     });
 
     it("[Fail] request holding without Start Program ", async () => {
@@ -236,7 +238,7 @@ contract('BBOHoldingContract', async (accounts) => {
         let bbo = await contract.bboBalance({
             from: accounts[1]
         });
-        console.log('BBO contract', JSON.stringify(bbo));
+        //console.log('BBO contract', JSON.stringify(bbo));
 
         await web3.eth.sendTransaction({
             from: accounts[1],
@@ -248,7 +250,7 @@ contract('BBOHoldingContract', async (accounts) => {
         bbo = await contract.bboBalance({
             from: accounts[1]
         });
-        console.log('BBO contract', JSON.stringify(bbo));
+        //console.log('BBO contract', JSON.stringify(bbo));
 
         await web3.eth.sendTransaction({
             from: accounts[2],
@@ -259,7 +261,7 @@ contract('BBOHoldingContract', async (accounts) => {
         bbo = await contract.bboBalance({
             from: accounts[1]
         });
-        console.log('BBO contract', JSON.stringify(bbo));
+        //console.log('BBO contract', JSON.stringify(bbo));
 
         await web3.eth.sendTransaction({
             from: accounts[3],
@@ -288,11 +290,13 @@ contract('BBOHoldingContract', async (accounts) => {
         bbo = await contract.bboBalance({
             from: accounts[1]
         });
-        console.log('BBO contract', JSON.stringify(bbo));
+        //console.log('BBO contract', JSON.stringify(bbo));
 
-        console.log(JSON.stringify(bboB));
-        console.log(JSON.stringify(bboC));
-        console.log(JSON.stringify(bboD));
+        // console.log(JSON.stringify(bboB));
+        // console.log(JSON.stringify(bboC));
+        // console.log(JSON.stringify(bboD));
+
+        return true;
 
     });
 
