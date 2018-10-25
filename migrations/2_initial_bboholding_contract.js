@@ -3,7 +3,7 @@ var BBOTest = artifacts.require("./BBOTest.sol");
 
 module.exports = function (deployer) {
 
-    if (deployer.network_id == 5777) {
+    if (deployer.network_id == 777) {
         var instance;
         deployer.deploy(BBOTest).then(function (rs) {
             instance = rs;

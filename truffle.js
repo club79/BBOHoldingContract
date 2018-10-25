@@ -5,7 +5,7 @@ var mnemonic = "stick vivid chalk unique size vacant insect slim snack journey w
 module.exports = {
   networks: {
     development: {
-      host: "localhost",
+      host: "127.0.0.1",
       port: 8545,
       gas: 0xfffffffffff,
       gasPrice: 0x01,
@@ -25,19 +25,13 @@ module.exports = {
       provider: new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/" + infura_apikey),
       network_id: 4,
       gas: 4500000
-    }
-  },
-  coverage: {
-    host: "127.0.0.1",
-    port: 8545, // <-- If you change this, also set the port option in .solcover.js.
-    gas: 0xfffffffffff, // <-- Use this high gas value
-    gasPrice: 0x01, // <-- Use this low gas price
-    network_id: 777, // Match any network id
-  },
-  solc: {
-    optimizer: {
-      enabled: true,
-      runs: 200
+    },
+    coverage: {
+      host: "127.0.0.1",
+      port: 8545, // <-- If you change this, also set the port option in .solcover.js.
+      gas: 0xfffffffffff, // <-- Use this high gas value
+      gasPrice: 0x01, // <-- Use this low gas price
+      network_id: 777, // Match any network id
     }
   }
 };
